@@ -1,0 +1,12 @@
+{
+  "name": "@ts-grpc-demo/workspace",
+  "version": "1.0.0",
+  "description": "TypeScript gRPC demo",
+  "author": "Joaquin Gatica <joaquin@gatica.dev>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaquingatica/ts-grpc-demo.git"
+  },
+  "license": "MIT",
+  "workspaces": ["server", "client"]
+}

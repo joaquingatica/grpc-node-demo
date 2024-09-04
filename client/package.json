@@ -1,0 +1,14 @@
+{
+  "name": "@ts-grpc-demo/client",
+  "version": "1.0.0",
+  "description": "TypeScript gRPC demo client",
+  "author": "Joaquin Gatica <joaquin@gatica.dev>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaquingatica/ts-grpc-demo.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
