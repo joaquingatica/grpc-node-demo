@@ -19,6 +19,7 @@ node_modules
 
 # Miscellaneous
 npm-debug.log
+.eslintcache
 
 # System Files
 .DS_Store
