@@ -8,5 +8,14 @@
     "url": "git+https://github.com/joaquingatica/ts-grpc-demo.git"
   },
   "license": "MIT",
-  "workspaces": ["server", "client"]
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
 }
