@@ -17,7 +17,8 @@
     "server:build": "tsc",
     "server:watch": "nodemon src/index.ts",
     "build": "run-s proto:build server:build",
-    "dev": "npm-run-all proto:build --parallel proto:watch server:watch"
+    "dev": "npm-run-all proto:build --parallel proto:watch server:watch",
+    "lint:proto": "buf lint ./proto"
   },
   "devDependencies": {
     "@bufbuild/buf": "^1.40.1",
