@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package gatica.middleearth.v1;
+
+import "gatica/middleearth/v1/people.proto";
+import "gatica/middleearth/v1/character.proto";
+
+service CharacterService {
+  rpc GetCharacters(GetCharactersRequest) returns (GetCharactersResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
+  rpc CreateCharacter(CreateCharacterRequest) returns (CreateCharacterResponse);
+  rpc DeleteCharacter(DeleteCharacterRequest) returns (DeleteCharacterResponse) {
+    option idempotency_level = IDEMPOTENT;
+  }
+}
+
+// GetCharacters
+
+message CharactersFilters {
+  optional People people = 2;
+}
+
+message GetCharactersRequest {
+  CharactersFilters filters = 1;
+}
+
+message GetCharactersResponse {
+  repeated Character characters = 1;
+}
+
+// CreateCharacter
+
+message CreateCharacterRequest {
+  string name = 2;
+  People people = 3;
+  bool alive = 4;
+}
+
+message CreateCharacterResponse {
+  Character character = 1;
+}
+
+// DeleteCharacter
+
+message DeleteCharacterRequest {
+  string id = 1;
+}
+
+message DeleteCharacterResponse {
+  string id = 1;
+}

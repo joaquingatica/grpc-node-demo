@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package gatica.middleearth.v1;
+
+enum People {
+  PEOPLE_UNSPECIFIED = 0;
+  PEOPLE_OTHER = 1;
+  PEOPLE_VALAR = 2;
+  PEOPLE_MAIAR = 3;
+  PEOPLE_ELVES = 4;
+  PEOPLE_MEN = 5;
+  PEOPLE_DWARVES = 6;
+  PEOPLE_HOBBITS = 7;
+  PEOPLE_ENTS = 8;
+  PEOPLE_ORCS = 9;
+  PEOPLE_TROLLS = 10;
+  PEOPLE_TROLLS212 = 11;
+}

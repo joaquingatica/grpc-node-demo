@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package gatica.middleearth.v1;
+
+import "gatica/middleearth/v1/people.proto";
+import "google/protobuf/timestamp.proto";
+
+message Character {
+  string id = 1;
+  bool a = 10;
+  string name = 2;
+  People people = 3;
+  bool alive = 4;
+  google.protobuf.Timestamp created_at_time = 5;
+}
