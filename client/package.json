@@ -11,12 +11,19 @@
   "scripts": {
     "start": "node dist/index",
     "build": "tsc",
+    "proto:bin": "mkdir -p \"./bin/\" && docker run --rm --volume \"./bin:/proto/bin\" fullstorydev/grpcurl:v1.8.9-alpine -plaintext -use-reflection -protoset-out \"/proto/bin/descriptor_set.bin\" \"host.docker.internal:50051\" describe",
+    "proto:codegen": "buf generate ./bin/descriptor_set.bin && prettier --write \"./src/schema/**/*.ts\"",
+    "proto": "run-s proto:bin proto:codegen",
     "dev": "nodemon src/index.ts"
   },
   "devDependencies": {
+    "@bufbuild/buf": "^1.40.1",
     "@tsconfig/node20": "^20.1.4",
     "nodemon": "^3.1.4",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
+    "ts-proto": "^2.2.0",
     "typescript": "^5.5.4"
   }
 }
