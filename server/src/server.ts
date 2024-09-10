@@ -4,12 +4,18 @@ import { HealthDefinition as HealthServiceDefinition } from 'nice-grpc-server-he
 import { TerminatorMiddleware } from 'nice-grpc-server-middleware-terminator'
 import { ServerReflectionService } from 'nice-grpc-server-reflection'
 
+import { authenticationMiddleware } from './middleware/authentication'
+import { loggingMiddleware } from './middleware/logging'
 import { getHealthService } from './services/healthService'
 import { getServerReflectionService } from './services/serverReflectionService'
 
 export const terminatorMiddleware = TerminatorMiddleware()
 
-export const server = createServer().use(openTelemetryServerMiddleware()).use(terminatorMiddleware)
+export const server = createServer()
+  .use(openTelemetryServerMiddleware())
+  .use(loggingMiddleware)
+  .use(authenticationMiddleware())
+  .use(terminatorMiddleware)
 
 export const setupServer = async () => {
   const healthService = await getHealthService()

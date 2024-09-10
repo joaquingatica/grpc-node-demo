@@ -3,6 +3,7 @@ import { deadlineMiddleware } from 'nice-grpc-client-middleware-deadline'
 import { retryMiddleware } from 'nice-grpc-client-middleware-retry'
 
 import { config } from './config'
+import { authenticationMiddleware } from './middleware/authentication'
 import { HealthDefinition as HealthServiceDefinition } from './schema/grpc/health/v1/health'
 
 const defaultCallOptions: Parameters<(typeof clientFactory)['create']>[2] = {
@@ -13,6 +14,7 @@ const defaultCallOptions: Parameters<(typeof clientFactory)['create']>[2] = {
 }
 
 const clientFactory = createClientFactory()
+  .use(authenticationMiddleware)
   // retryMiddleware should be registered before deadlineMiddleware
   .use(retryMiddleware)
   .use(deadlineMiddleware)
