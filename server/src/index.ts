@@ -1,5 +1,5 @@
 import { config } from './config'
-import { server, setupServer } from './server'
+import { server, setupServer, teardownServer } from './server'
 
 const start = async () => {
   await setupServer()
@@ -8,7 +8,8 @@ const start = async () => {
 }
 
 const shutdown = async () => {
-  await server.shutdown()
+  console.log('Shutting down...')
+  await teardownServer()
   console.log('Server gracefully shut down.')
 }
 
