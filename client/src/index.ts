@@ -1,3 +1,11 @@
-import { hello } from './test'
+import { healthClient } from './clients'
 
-console.log(`Hello ${hello}!`)
+const main = async () => {
+  const { status } = await healthClient.check({})
+  console.log('Server health status:', status)
+}
+
+main().catch((err) => {
+  console.error(err)
+  process.exit(1)
+})
