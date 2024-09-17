@@ -1,4 +1,4 @@
-import { healthClient } from './clients'
+import { healthClient } from './clients/health'
 
 const main = async () => {
   const { status } = await healthClient.check({})
