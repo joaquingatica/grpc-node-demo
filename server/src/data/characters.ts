@@ -20,11 +20,33 @@ export const charactersData = {
     return { ...character }
   },
 
+  update: ({
+    id,
+    name,
+    people,
+    alive,
+  }: {
+    id: string
+    name: string
+    people: People
+    alive: boolean
+  }) => {
+    const character = characters.find((character) => character.id === id)
+    if (!character) {
+      return null
+    }
+    character.name = name
+    character.people = people
+    character.alive = alive
+    return { ...character }
+  },
+
   delete: (id: string) => {
     const index = characters.findIndex((character) => character.id === id)
-    if (index !== -1) {
-      const [character] = characters.splice(index, 1)
-      return character ? { ...character } : null
+    if (index === -1) {
+      return null
     }
+    const [character] = characters.splice(index, 1)
+    return character ? { ...character } : null
   },
 }
