@@ -49,7 +49,7 @@ function createBaseCharactersFilters(): CharactersFilters {
 export const CharactersFilters: MessageFns<CharactersFilters> = {
   encode(message: CharactersFilters, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.people !== undefined) {
-      writer.uint32(16).int32(message.people)
+      writer.uint32(8).int32(message.people)
     }
     return writer
   },
@@ -61,8 +61,8 @@ export const CharactersFilters: MessageFns<CharactersFilters> = {
     while (reader.pos < end) {
       const tag = reader.uint32()
       switch (tag >>> 3) {
-        case 2:
-          if (tag !== 16) {
+        case 1:
+          if (tag !== 8) {
             break
           }
 
@@ -229,13 +229,13 @@ function createBaseCreateCharacterRequest(): CreateCharacterRequest {
 export const CreateCharacterRequest: MessageFns<CreateCharacterRequest> = {
   encode(message: CreateCharacterRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.name !== '') {
-      writer.uint32(18).string(message.name)
+      writer.uint32(10).string(message.name)
     }
     if (message.people !== 0) {
-      writer.uint32(24).int32(message.people)
+      writer.uint32(16).int32(message.people)
     }
     if (message.alive !== false) {
-      writer.uint32(32).bool(message.alive)
+      writer.uint32(24).bool(message.alive)
     }
     return writer
   },
@@ -247,22 +247,22 @@ export const CreateCharacterRequest: MessageFns<CreateCharacterRequest> = {
     while (reader.pos < end) {
       const tag = reader.uint32()
       switch (tag >>> 3) {
-        case 2:
-          if (tag !== 18) {
+        case 1:
+          if (tag !== 10) {
             break
           }
 
           message.name = reader.string()
           continue
-        case 3:
-          if (tag !== 24) {
+        case 2:
+          if (tag !== 16) {
             break
           }
 
           message.people = reader.int32() as any
           continue
-        case 4:
-          if (tag !== 32) {
+        case 3:
+          if (tag !== 24) {
             break
           }
 
