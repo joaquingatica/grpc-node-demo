@@ -10,6 +10,7 @@ service CharacterService {
     option idempotency_level = NO_SIDE_EFFECTS;
   }
   rpc CreateCharacter(CreateCharacterRequest) returns (CreateCharacterResponse);
+  rpc UpdateCharacter(UpdateCharacterRequest) returns (UpdateCharacterResponse);
   rpc DeleteCharacter(DeleteCharacterRequest) returns (DeleteCharacterResponse) {
     option idempotency_level = IDEMPOTENT;
   }
@@ -18,7 +19,7 @@ service CharacterService {
 // GetCharacters
 
 message CharactersFilters {
-  optional People people = 2;
+  optional People people = 1;
 }
 
 message GetCharactersRequest {
@@ -32,12 +33,25 @@ message GetCharactersResponse {
 // CreateCharacter
 
 message CreateCharacterRequest {
+  string name = 1;
+  People people = 2;
+  bool alive = 3;
+}
+
+message CreateCharacterResponse {
+  Character character = 1;
+}
+
+// UpdateCharacter
+
+message UpdateCharacterRequest {
+  string id = 1;
   string name = 2;
   People people = 3;
   bool alive = 4;
 }
 
-message CreateCharacterResponse {
+message UpdateCharacterResponse {
   Character character = 1;
 }
 
