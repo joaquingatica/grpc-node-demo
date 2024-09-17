@@ -18,7 +18,7 @@ service CharacterService {
 // GetCharacters
 
 message CharactersFilters {
-  optional People people = 2;
+  optional People people = 1;
 }
 
 message GetCharactersRequest {
@@ -32,9 +32,9 @@ message GetCharactersResponse {
 // CreateCharacter
 
 message CreateCharacterRequest {
-  string name = 2;
-  People people = 3;
-  bool alive = 4;
+  string name = 1;
+  People people = 2;
+  bool alive = 3;
 }
 
 message CreateCharacterResponse {
