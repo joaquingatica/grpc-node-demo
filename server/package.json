@@ -38,6 +38,7 @@
     "nice-grpc-opentelemetry": "^0.1.15",
     "nice-grpc-server-health": "^2.0.11",
     "nice-grpc-server-middleware-terminator": "^2.0.11",
-    "nice-grpc-server-reflection": "^2.0.11"
+    "nice-grpc-server-reflection": "^2.0.11",
+    "ulid": "^2.3.0"
   }
 }

@@ -2,10 +2,12 @@ import { createServer } from 'nice-grpc'
 import { openTelemetryServerMiddleware } from 'nice-grpc-opentelemetry'
 import { HealthDefinition as HealthServiceDefinition } from 'nice-grpc-server-health'
 import { TerminatorMiddleware } from 'nice-grpc-server-middleware-terminator'
-import { ServerReflectionService } from 'nice-grpc-server-reflection'
+import { ServerReflectionService as ServerReflectionServiceDefinition } from 'nice-grpc-server-reflection'
 
 import { authenticationMiddleware } from './middleware/authentication'
 import { loggingMiddleware } from './middleware/logging'
+import { CharacterServiceDefinition } from './proto/gatica/middleearth/v1/character_service'
+import { characterService } from './services/characterService'
 import { getHealthService } from './services/healthService'
 import { getServerReflectionService } from './services/serverReflectionService'
 
@@ -21,8 +23,15 @@ export const setupServer = async () => {
   const healthService = await getHealthService()
 
   const services = [
+    [CharacterServiceDefinition, characterService],
     [HealthServiceDefinition, healthService],
-    [ServerReflectionService, await getServerReflectionService([HealthServiceDefinition.fullName])],
+    [
+      ServerReflectionServiceDefinition,
+      await getServerReflectionService([
+        CharacterServiceDefinition.fullName,
+        HealthServiceDefinition.fullName,
+      ]),
+    ],
   ] as const
 
   services.forEach(([ServiceDefinition, service]) => {
