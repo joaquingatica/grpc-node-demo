@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node dist/index",
-    "proto:codegen": "rimraf ./src/proto && buf generate ./proto && prettier --write ./src/proto",
+    "proto:codegen": "rimraf ./src/proto && buf generate ./proto && prettier --write \"./src/proto/**/*.ts\"",
     "proto:bin": "mkdir -p \"./bin/\" && buf build --as-file-descriptor-set --output ./bin/descriptor_set.bin ./proto",
     "proto:build": "run-s proto:codegen proto:bin",
     "proto:watch": "chokidar \"./proto/**/*.proto\" -c \"npm run proto:build\"",
